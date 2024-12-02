@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Búsqueda General</h1>
+
+    <form method="get" action="{% url 'buscar_todos' %}">
+        <label for="nombre">Buscar por nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ query }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if query %}
+        <h2>Resultados para "{{ query }}":</h2>
+
+        {% if resultados_alumnos %}
+        <h3>Alumnos</h3>
+            <ul>
+                {% for alumno in resultados_alumnos %}
+                    <li>
+                        <strong>Nombre:</strong> {{ alumno.nombre }}<br>
+                    </li>
+                    <li>
+                        <strong>Carrera:</strong> {{ alumno.carrera }} <br>
+                    </li>
+                    <li>
+                        <strong>Cuatrimestre:</strong> {{ alumno.cuatrimestre }} <br>
+                    </li>
+                    <li>
+                        <strong>Telefono:</strong> {{ alumno.telefono }}<br>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        {% endif %}
+
+        {% if resultados_administrativos %}
+        <h3>Administrativos</h3>
+            <ul>
+                {% for administrativo in resultados_administrativos %}
+                    <li>
+                        <strong>Nombre:</strong> {{ administrativo.nombre }}<br>
+                    </li>
+                    <li>
+                        <strong>Departamento:</strong> {{ administrativo.departamento }}<br>
+                    </li>
+                    <li>
+                        <strong>Telefono:</strong> {{ administrativo.telefono }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        {% endif %}
+
+        {% if resultados_maestros %}
+        <h3>Maestros</h3>
+            <ul>
+                {% for maestro in resultados_maestros %}
+                    <li>
+                        <strong>Nombre:</strong> {{ maestro.nombre }}<br>
+                    </li>
+                    <li>
+                        <strong>Materia:</strong> {{ maestro.materia }}<br>
+                    </li>
+                    <li>
+                        <strong>Telefono:</strong> {{ maestro.telefono }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        {% endif %}
+    {% endif %}
+</body>
+</html>

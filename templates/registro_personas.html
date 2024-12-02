@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <script>
+        function mostrarCampos() {
+            const area = document.getElementById("area").value;
+            document.getElementById("campos-alumnos").style.display = area === "alumnos" ? "block" : "none";
+            document.getElementById("campos-administrativos").style.display = area === "administrativos" ? "block" : "none";
+            document.getElementById("campos-maestros").style.display = area === "maestros" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <h1>Registro de Personas</h1>
+    <form method="post" action="{% url 'registro_personas' %}">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="area">Área:</label>
+        <select id="area" name="area" onchange="mostrarCampos()" required>
+            <option value="">Selecciona un área</option>
+            <option value="alumnos">Alumnos</option>
+            <option value="administrativos">Administrativos</option>
+            <option value="maestros">Maestros</option>
+        </select><br><br>
+
+        <!-- Campos para Alumnos -->
+        <div id="campos-alumnos" style="display: none;">
+            <label for="carrera">Carrera:</label>
+            <input type="text" id="carrera" name="carrera"><br><br>
+
+            <label for="cuatrimestre">Cuatrimestre:</label>
+            <input type="text" id="cuatrimestre" name="cuatrimestre"><br><br>
+
+            <label for="telefono-alumno">Teléfono:</label>
+            <input type="text" id="telefono-alumno" name="telefono_alumno"><br><br>
+        </div>
+
+        <!-- Campos para Administrativos -->
+        <div id="campos-administrativos" style="display: none;">
+            <label for="departamento">Departamento:</label>
+            <input type="text" id="departamento" name="departamento"><br><br>
+
+            <label for="telefono-admin">Teléfono:</label>
+            <input type="text" id="telefono-admin" name="telefono_admin"><br><br>
+        </div>
+
+        <!-- Campos para Maestros -->
+        <div id="campos-maestros" style="display: none;">
+            <label for="materia">Materia:</label>
+            <input type="text" id="materia" name="materia"><br><br>
+
+            <label for="telefono-maestro">Teléfono:</label>
+            <input type="text" id="telefono-maestro" name="telefono_maestro"><br><br>
+        </div>
+
+        <button type="submit">Registrar</button>
+    </form>
+</body>
+</html>

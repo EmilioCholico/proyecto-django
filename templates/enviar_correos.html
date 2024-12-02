@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Correo</title>
+    
+</head>
+<body>
+    <div class="form-container">
+        <h1>Enviar Correo</h1>
+        <form method="post" action="{% url 'enviar_correo' %}">
+            {% csrf_token %}
+            <label for="destinatario">Correo destinatario:</label>
+            <input type="email" id="destinatario" name="destinatario" placeholder="Ingrese el correo del destinatario" required>
+            <br>
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" name="asunto" placeholder="Ingrese el asunto del correo" required>
+            <br>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escriba su mensaje aquí..." required></textarea>
+            <br>
+            <button type="submit">Enviar Correo</button>
+        </form>
+    </div>
+</body>
+</html>

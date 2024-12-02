@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Registros</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestión de Registros</h1>
+
+    <!-- Tabla de Alumnos -->
+    <h2>Alumnos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Carrera</th>
+                <th>Cuatrimestre</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+            <tr>
+                <td>{{ alumno.id }}</td>
+                <td>{{ alumno.nombre }}</td>
+                <td>{{ alumno.carrera }}</td>
+                <td>{{ alumno.cuatrimestre }}</td>
+                <td>{{ alumno.telefono }}</td>
+                <td class="actions">
+                    <a href="{% url 'editar_alumno' alumno.id %}"><button>Editar</button></a>
+                    <a href="{% url 'eliminar_alumno' alumno.id %}" onclick="return confirm('¿Seguro que deseas eliminar este registro?');"><button>Eliminar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tabla de Administrativos -->
+    <h2>Administrativos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Departamento</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for administrativo in administrativos %}
+            <tr>
+                <td>{{ administrativo.id }}</td>
+                <td>{{ administrativo.nombre }}</td>
+                <td>{{ administrativo.departamento }}</td>
+                <td>{{ administrativo.telefono }}</td>
+                <td class="actions">
+                    <a href="{% url 'editar_administrativo' administrativo.id %}"><button>Editar</button></a>
+                    <a href="{% url 'eliminar_administrativo' administrativo.id %}" onclick="return confirm('¿Seguro que deseas eliminar este registro?');"><button>Eliminar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tabla de Maestros -->
+    <h2>Maestros</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Materia</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maestro in maestros %}
+            <tr>
+                <td>{{ maestro.id }}</td>
+                <td>{{ maestro.nombre }}</td>
+                <td>{{ maestro.materia }}</td>
+                <td>{{ maestro.telefono }}</td>
+                <td class="actions">
+                    <a href="{% url 'editar_maestro' maestro.id %}"><button>Editar</button></a>
+                    <a href="{% url 'eliminar_maestro' maestro.id %}" onclick="return confirm('¿Seguro que deseas eliminar este registro?');"><button>Eliminar</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
